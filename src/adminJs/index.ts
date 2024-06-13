@@ -3,9 +3,10 @@ import AdminJsExpress from '@adminjs/express'
 import AdminJsSequelize from '@adminjs/sequelize'
 import { database } from '../database'
 import { adminJsResources } from './resources'
-import { User } from '../models'
+import { Category, Course, Episode, User } from '../models'
 import bcrypt from 'bcrypt'
 import { locale } from './locale'
+import AdminJS from 'adminjs'
 
 
 AdminJs.registerAdapter(AdminJsSequelize)
@@ -35,7 +36,24 @@ export const adminJs = new AdminJs({
             }
         }
     },
-    locale: locale
+    locale: locale,
+    dashboard: {
+        component: AdminJS.bundle("./components/Dashboard"),
+        handler: async (req, res, context) => {
+            const courses = await Course.count()
+            const episodes = await Episode.count()
+            const category = await Category.count()
+            const standardUsers = await User.count({ where: { role: 'user' } })
+            
+            res.json({
+                'Cursos': courses,
+                'Episódios': episodes,
+                'Categorias': category,
+                'Usuários': standardUsers
+            })
+        }
+    }
+
 })
 
 export const adminJsRouter = AdminJsExpress.buildAuthenticatedRouter(adminJs, {
