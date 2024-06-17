@@ -7,15 +7,18 @@ const app = express()
 
 app.use(express.static('public'))
 
-app.use(adminJs.options.rootPath, adminJsRouter)
+app.use(express.json())
 
 app.use(router)
 
-const PORT = process.env.PORT || 3000
+app.use(adminJs.options.rootPath, adminJsRouter)
 
-app.listen(PORT, () => {
-  database.authenticate().then(() => {
-    console.log('DB connection successfull');
+const PORT = process.env.port || 3000
+
+app.listen(PORT, async () => {
+  await database.authenticate().then(() => {
+    console.log('DB connection successfull.')
   })
-  console.log(`Server started successfuly at port ${PORT}`)
+
+  console.log(`Server started successfuly at port ${PORT}.`)
 })

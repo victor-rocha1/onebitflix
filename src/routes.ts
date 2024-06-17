@@ -2,6 +2,7 @@ import express from 'express'
 import { categoriesController } from './controllers/categoriesController'
 import { coursesController } from './controllers/courseControllers'
 import { episodesController } from './controllers/episodesController'
+import { authController } from './controllers/authController'
 
 
 const router = express.Router()
@@ -16,4 +17,5 @@ router.get('/courses/:id', coursesController.show)
 
 
 router.get('/episodes/stream', episodesController.stream)
+router.post('/auth/register', authController.register)
 export { router }
