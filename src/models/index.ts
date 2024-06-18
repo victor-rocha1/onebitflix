@@ -4,6 +4,7 @@ import { Episode } from './Episode'
 import User from './User'
 import { Favorite } from './Favorite'
 import { Like } from './Like'
+import { WatchTime } from './WhatchTime'
 
 Category.hasMany(Course)
 
@@ -15,12 +16,14 @@ Course.hasMany(Favorite, { as: 'favoritesUsers', foreignKey: 'course_id' })  // 
 
 
 Episode.belongsTo(Course)  // Episode pertence a um Course
+Episode.belongsToMany(User, { through: WatchTime })
 
 Favorite.belongsTo(Course)  // Favorite pertence a um Course
 Favorite.belongsTo(User)  // Favorite pertence a um User
 
 User.belongsToMany(Course, { through: Favorite })  // User pertence a muitos Courses através de Favorite
 User.belongsToMany(Course, { through: Like })
+User.belongsToMany(Episode, { through: WatchTime })
 User.hasMany(Favorite, { as: 'favoritesCourses', foreignKey: 'user_id' })  // User tem muitos Favorites (com alias 'favoritesCourses' e chave estrangeira 'user_id')
 
 
@@ -30,5 +33,6 @@ export {
   Episode,
   Favorite,
   Like,
-  User
+  User,
+  WatchTime
 }
