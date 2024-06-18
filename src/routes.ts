@@ -3,6 +3,7 @@ import { categoriesController } from './controllers/categoriesController'
 import { coursesController } from './controllers/courseControllers'
 import { episodesController } from './controllers/episodesController'
 import { favoritesController } from './controllers/favoritesController'
+import { likesController } from './controllers/likesController'
 import { ensureAuth, ensureAuthViaQuery } from './middlewares/auth'
 import express from 'express'
 
