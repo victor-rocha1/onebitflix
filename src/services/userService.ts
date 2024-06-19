@@ -136,5 +136,17 @@ export const userService = {
             keepWatchingList.sort((a, b) => a.watchTime.updatedAt < b.watchTime.updatedAt ? 1 : -1)
             return keepWatchingList
         }
-    }
+    },
+
+    updatePassword: async (id: string | number, password: string) => {
+        const [affectedRows, updatedUsers] = await User.update({
+            password
+        }, {
+            where: { id },
+            individualHooks: true,
+            returning: true
+        })
+
+        return updatedUsers[0]
+    },
 }
