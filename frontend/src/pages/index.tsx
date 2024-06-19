@@ -1,11 +1,10 @@
-import Head from 'next/head'
-import '../../styles/HomenoAuth.scss'
+import HeaderNoAuth from '../components/headernoAuth'
 
 function HomenoAuth() {
 
   return (
     <>
-    <h1>VITIN</h1>
+      <HeaderNoAuth />
     </>
   )
 }
