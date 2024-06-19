@@ -5,10 +5,7 @@ function HomenoAuth() {
 
   return (
     <>
-      <Head>
-        <title>Home</title>
-      </Head>
-			<main></main>
+    <h1>VITIN</h1>
     </>
   )
 }
