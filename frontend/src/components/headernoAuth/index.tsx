@@ -6,7 +6,6 @@ import Link from "next/link";
 const HeaderNoAuth = function () {
     return (
         <>
-        <main>
             <div className={styles.ctaSection}>
                 <img src="/homeNoAuth/logoCta.png" alt="logoCta" className={styles.imgCta} />
                 <p>Se cadastre para ter acesso aos cursos</p>
@@ -24,7 +23,6 @@ const HeaderNoAuth = function () {
                     </Link>
                 </div>
             </Container>
-        </main>
         </>
     );
 };
