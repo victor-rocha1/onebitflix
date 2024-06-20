@@ -1,4 +1,4 @@
-import styles from "./styles.module.scss";
+import styles from "./styles.modules.scss";
 import { CourseType } from "../../../services/courseService";
 import Link from "next/link";
 
