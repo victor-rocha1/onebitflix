@@ -8,20 +8,35 @@ interface Props {
 }
 
 const SlideComponent = function ({ course }: Props) {
+
     return (
         <>
-            <div>
+            <div className="d-flex flex-column align-items-center py-4">
                 <Splide
                     options={{
                         type: "loop",
                         perPage: 4,
                         perMove: 1,
+                        width: 1200,
                         pagination: false,
+                        breakpoints: {
+                            1200: {
+                                perPage: 2,
+                                width: 600,
+                            },
+                            600: {
+                                perPage: 1,
+                                width: 300,
+                            },
+                            600: {
+                                width: 250,
+                            },
+                        },
                     }}
                 >
                     {course?.map((course) => (
                         <SplideSlide key={course.id}>
-                            <SlideCard course={course} />
+                            <SlideCard courseContent={course} />
                         </SplideSlide>
                     ))}
                 </Splide>
