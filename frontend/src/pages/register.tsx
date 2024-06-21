@@ -3,8 +3,54 @@ import Head from "next/head";
 import HeaderGeneric from "../components/common/headerGeneric";
 import { Container, Button, Form, FormGroup, Label, Input } from "reactstrap";
 import Footer from "../components/common/footer";
+import { FormEvent, useState } from "react";
+import authService from "../services/auth";
+import { useRouter } from "next/router";
+import ToastComponent from "../components/common/toast";
 
 const Register = function () {
+    const router = useRouter()
+    const [toastIsOpen, setToastIsOpen] = useState(false);
+    const [toastMessage, setToastMessage] = useState("");
+    const handleRegister = async (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        const formData = new FormData(event.currentTarget);
+        const firstName = formData.get("firstName")!.toString();
+        const lastName = formData.get("lastName")!.toString();
+        const phone = formData.get("phone")!.toString();
+        const birth = formData.get("birth")!.toString();
+        const email = formData.get("email")!.toString();
+        const password = formData.get("password")!.toString();
+        const confirmPassword = formData.get("confirmPassword")!.toString();
+        const params = { firstName, lastName, phone, birth, email, password };
+
+        if (password != confirmPassword) {
+            setToastIsOpen(true);
+            setTimeout(() => {
+                setToastIsOpen(false);
+            }, 1000 * 3);
+            setToastMessage("Senha e confirmação diferentes.");
+
+            return;
+        }
+
+        const { data } = await authService.register(params);
+
+        if (data.status === 201) {
+            router.push("/login?sucess=true");
+        } else {
+            setToastIsOpen(true);
+            setTimeout(() => {
+                setToastIsOpen(false);
+            }, 1000 * 3);
+            setToastMessage(data.message);
+        }
+
+    };
+
+
+
     return (
         <>
             <Head>
@@ -78,6 +124,7 @@ const Register = function () {
                     </Form>
                 </Container>
                 <Footer />
+                <ToastComponent color="bg-danger" isOpen={toastIsOpen} message={toastMessage}/>
             </main >
         </>
     );
