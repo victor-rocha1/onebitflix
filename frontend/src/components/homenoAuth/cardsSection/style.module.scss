@@ -1,4 +1,5 @@
-@import "../../../../styles/colors.module.scss";
+
+@import '../../../../styles/colors.module.scss';
 
 .sectionTitle {
     font-size: 20px;
@@ -10,12 +11,14 @@
 .cardsContainer {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    flex-direction: row;
+    gap: 20px; /* Espaçamento entre os cards */
+    justify-content: center; /* Centraliza os cards */
+    padding: 20px; /* Espaçamento em volta dos cards */
 }
 
 .card {
-    width: 340px;
+    flex: 1 1 300px;  /* Define um tamanho base para os cards e permite flexibilidade */
+    max-width: 340px;  /* Limite máximo de largura */
     height: 280px;
     border-radius: 8px;
     padding: 14px;
@@ -24,6 +27,7 @@
     flex-direction: column;
     justify-content: flex-end;
     transition: 0.3s;
+    box-sizing: border-box; /* Inclui padding e borda no tamanho total */
     margin: 10px;
 
     .cardTitle {
@@ -48,31 +52,31 @@
 }
 
 .card1 {
-    @extend.card;
+    @extend .card;
     background-image: url("../../../../public/homeNoAuth/imgFrontend.png");
 }
 
 .card2 {
-    @extend.card;
+    @extend .card;
     background-image: url("../../../../public/homeNoAuth/imgBackend.png");
 }
 
 .card3 {
-    @extend.card;
+    @extend .card;
     background-image: url("../../../../public/homeNoAuth/imgMobile.png");
 }
 
 .card4 {
-    @extend.card;
+    @extend .card;
     background-image: url("../../../../public/homeNoAuth/imgGit.png");
 }
 
 .card5 {
-    @extend.card;
+    @extend .card;
     background-image: url("../../../../public/homeNoAuth/imgProjects.png");
 }
 
 .card6 {
-    @extend.card;
+    @extend .card;
     background-image: url("../../../../public/homeNoAuth/imgCareer.png");
 }

@@ -1,13 +1,13 @@
 import "@splidejs/splide/dist/css/splide.min.css";
-import { Splide, SplideSlide } from '@splidejs/react-splide';
-import { CourseType } from "../../../services/courseService";
 import SlideCard from "../slideCard";
+import { Splide, SplideSlide } from "@splidejs/react-splide";
+import { CourseType } from "../../../services/courseService";
 
-interface props {
+interface Props {
     course: CourseType[];
 }
 
-const SlideComponent = function ({ course }: props) {
+const SlideComponent = function ({ course }: Props) {
     return (
         <>
             <div>

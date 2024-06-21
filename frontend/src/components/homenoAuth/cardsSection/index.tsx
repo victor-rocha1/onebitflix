@@ -1,11 +1,10 @@
-import { Container } from "reactstrap";
 import styles from "./style.module.scss";
 
 const CardsSection = function () {
     return (
         <>
             <p className={styles.sectionTitle}>O QUE VOCÊ VAI ACESSAR</p>
-            <Container>
+            <div className={styles.cardsContainer}>
                 <div className={styles.card1}>
                     <p className={styles.cardTitle}>FRONT-END</p>
                     <p className={styles.cardDescription}>
@@ -54,7 +53,7 @@ const CardsSection = function () {
                         tecnologias e todo o suporte técnico necessário para ser um sênior na programação.
                     </p>
                 </div>
-            </Container>
+            </div>
         </>
     )
 };
