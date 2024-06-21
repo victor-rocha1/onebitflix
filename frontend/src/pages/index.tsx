@@ -5,6 +5,7 @@ import PresentationSection from '../components/homenoAuth/presentationsection';
 import SlideSection from '../components/homenoAuth/slideSection';
 import courseService, { CourseType } from '../services/courseService';
 import { ReactNode } from 'react';
+import Footer from '../components/common/footer';
 
 interface IndexPageProps {
   children?: ReactNode;
@@ -21,6 +22,7 @@ function HomenoAuth({ course }: IndexPageProps) {
         </div>
         <CardsSection />
         <SlideSection newestCourses={course} />
+        <Footer />
       </main>
     </>
   );
