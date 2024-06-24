@@ -4,7 +4,7 @@ import HeaderGeneric from "../components/common/headerGeneric";
 import { Container, Button, Form, FormGroup, Label, Input } from "reactstrap";
 import Footer from "../components/common/footer";
 import { FormEvent, useState } from "react";
-import authService from "../services/auth";
+import authService from "../services/authService";
 import { useRouter } from "next/router";
 import ToastComponent from "../components/common/toast";
 
@@ -38,7 +38,7 @@ const Register = function () {
         const { data } = await authService.register(params);
 
         if (data.status === 201) {
-            router.push("/login?sucess=true");
+            router.push("/login?registred=true");
         } else {
             setToastIsOpen(true);
             setTimeout(() => {
@@ -48,8 +48,6 @@ const Register = function () {
         }
 
     };
-
-
 
     return (
         <>

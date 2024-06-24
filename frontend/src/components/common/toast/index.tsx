@@ -1,13 +1,12 @@
 import { Toast, ToastBody } from "reactstrap";
 
-
-interface props {
+interface Props {
     isOpen: boolean;
     message: string;
     color: string;
 }
 
-const ToastComponent = function () {
+const ToastComponent: React.FC<Props> = ({ isOpen, message, color }) => {
     return (
         <>
             <Toast
