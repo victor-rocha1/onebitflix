@@ -1,11 +1,11 @@
 import { GetStaticProps } from 'next';
-import CardsSection from '../components/homenoAuth/cardsSection';
-import HeaderNoAuth from '../components/homenoAuth/headernoAuth';
-import PresentationSection from '../components/homenoAuth/presentationsection';
-import SlideSection from '../components/homenoAuth/slideSection';
-import courseService, { CourseType } from '../services/courseService';
+import CardsSection from '../src/components/homenoAuth/cardsSection';
+import HeaderNoAuth from '../src/components/homenoAuth/headernoAuth';
+import PresentationSection from '../src/components/homenoAuth/presentationsection';
+import SlideSection from '../src/components/homenoAuth/slideSection';
+import courseService, { CourseType } from '../src/services/courseService';
 import { ReactNode, useEffect } from 'react';
-import Footer from '../components/common/footer';
+import Footer from '../src/components/common/footer';
 import AOS from 'aos';
 import "aos/dist/aos.css";
 
