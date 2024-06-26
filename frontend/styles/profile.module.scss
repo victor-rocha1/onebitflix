@@ -108,6 +108,8 @@
     font-size: 15px;
     padding: 6px 20px;
     transition: 0.4s;
+    display: block;
+    margin: 10px auto;
 
     &:hover {
         border-color: $darkRed;
@@ -140,6 +142,13 @@
         background-color: transparent;
         border-color: $lightRed;
         color: $lightGray;
+    }
+    &:active{
+        background-color: transparent;
+        box-shadow: none;
+    }
+    &:focus{
+        box-shadow: none;
     }
 }
 
