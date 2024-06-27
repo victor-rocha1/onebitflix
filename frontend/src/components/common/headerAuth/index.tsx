@@ -2,7 +2,7 @@ import Link from "next/link";
 import styles from "./styles.module.scss";
 import { Container, Input, Form } from "reactstrap";
 import Modal from "react-modal";
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import profileService from "../../../services/profileService";
 
@@ -19,6 +19,7 @@ useEffect(() => {
 Modal.setAppElement("#__next");  //Para deficientes visuais
 
 const [modalOpen, setModalOpen] = useState(false);
+const [searchName, setSearchName] = useState("");
 
 const handleOpenModal = () => {
     setModalOpen(true);
@@ -34,6 +35,19 @@ const handleLogout = () => {
     router.push("/");
 };
 
+const handleSearch = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    router.push(`/search?name=${searchName}`);
+    setSearchName("");
+};
+
+const handleSearchClick = () => {
+    router.push(`/search?name=${searchName}`);
+    setSearchName("");
+};
+
+
 const HeaderAuth = function () {
     return (
         <Container className={styles.nav}>
@@ -41,18 +55,23 @@ const HeaderAuth = function () {
                 <img src="/logoOnebitflix.svg" alt="logoOnebitflix" className={styles.imgLogoNav} />
             </Link>
             <div className="d-flex align-items-center">
-                <Form>
+                <Form onSubmit={handleSearch}>
                     <Input
                         name="search"
                         type="search"
                         placeholder="Pesquisar"
                         className={styles.input}
+                        value={searchName}
+                        onChange={(event) => {
+                            setSearchName(event.currentTarget.value.toLowerCase());
+                        }}
                     />
                 </Form>
                 <img
                     src="homeAuth/iconSearch.svg"
                     alt="lupaHeader"
                     className={styles.searchImg}
+                    onClick={handleSearchClick}
                 />
                 <p className={styles.userProfile} onClick={handleOpenModal}>
                     {initials}
@@ -69,6 +88,7 @@ const HeaderAuth = function () {
                     </Link>
                     <p className={styles.modalLink} onClick={handleLogout}>Sair</p>
                 </Modal>
+            </div>
         </Container>
     );
 };
