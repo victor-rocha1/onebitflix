@@ -7,6 +7,7 @@ import courseService, { CourseType } from "../src/services/courseService";
 import { Button, Container } from "reactstrap";
 import EpisodeList from "../src/components/episodeList";
 import Footer from "../src/components/common/footer";
+import watchEpisodeService from "../src/services/episodeService";
 
 
 
@@ -16,6 +17,8 @@ const CoursePage = function () {
     const [liked, setLiked] = useState(false);
     const [favorited, setFavorited] = useState(false);
     const [course, setCourse] = useState<CourseType>();
+    const [getEpisodeTime, setGetEpisodeTime] = useState(0);
+    const [episodeTime, setEpisodeTime] = useState(0);
 
     const getCourse = async function () {
         if (typeof id !== "string") return;
@@ -27,6 +30,10 @@ const CoursePage = function () {
             setLiked(res.data.liked);
             setFavorited(res.data.favorited)
         }
+    };
+
+    const handleGetEpisodeTime = async () => {
+        const res = await watchEpisodeService.getWatchTime(0);
     };
 
     const handleLikeCourse = async () => {
