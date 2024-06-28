@@ -8,6 +8,7 @@ import { Button, Container } from "reactstrap";
 import EpisodeList from "../src/components/episodeList";
 import Footer from "../src/components/common/footer";
 import watchEpisodeService from "../src/services/episodeService";
+import PageSpinner from "../src/components/common/spinner";
 
 
 
@@ -19,6 +20,19 @@ const CoursePage = function () {
     const [course, setCourse] = useState<CourseType>();
     const [getEpisodeTime, setGetEpisodeTime] = useState(0);
     const [episodeTime, setEpisodeTime] = useState(0);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        if (!sessionStorage.getItem("onebitflix-token")) {
+            router.push("/login");
+        } else {
+            setLoading(false);
+        }
+    }, []);
+
+    if (loading) {
+        return <PageSpinner />;
+    }
 
     const getCourse = async function () {
         if (typeof id !== "string") return;

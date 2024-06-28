@@ -7,6 +7,7 @@ import HeaderGeneric from "../../../src/components/common/headerGeneric";
 import { Button, Container } from "reactstrap";
 import watchEpisodeService from "../../../src/services/episodeService";
 import ReactPlayer from "react-player";
+import PageSpinner from "../../../src/components/common/spinner";
 
 const EpisodePlayer = function () {
     const router = useRouter();
@@ -19,6 +20,8 @@ const EpisodePlayer = function () {
     const [getEpisodeTime, setGetEpisodeTime] = useState(0);
     const [episodeTime, setEpisodeTime] = useState(0);
     const [isReady, setIsReady] = useState(false);
+    const [loading, setLoading] = useState(true);
+
 
     const handleGetEpisodeTime = async () => {
         const res = await watchEpisodeService.getWatchTime(episodeId);
@@ -56,6 +59,18 @@ const EpisodePlayer = function () {
         getCourse();
     }, [courseId]);
 
+    useEffect(() => {
+        if (!sessionStorage.getItem("onebitflix-token")) {
+            router.push("/login");
+        } else {
+            setLoading(false);
+        }
+    }, []);
+
+    if (loading) {
+        return <PageSpinner />;
+    }
+
     const handlePlayerTime = () => {
         playerRef.current?.seekTo(getEpisodeTime);
         setIsReady(true);
@@ -68,6 +83,8 @@ const EpisodePlayer = function () {
             }
         }
     }, [episodeTime, course, episodeOrder]);
+
+
 
     return (
         <>
